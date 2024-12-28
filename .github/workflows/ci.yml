@@ -12,7 +12,12 @@ jobs:
       - name: Checkout the repo source code
         uses: actions/checkout@v3
       - name: Run a one-line script
-        run: echo Hello, world!
+        run: echo Hello
+      - name: Check
+        if: ${{ !startsWith(github.ref, 'refs/tags/v') && github.ref != 'refs/heads/main' }}
+        run: |
+          { echo "Wrong branch/tag"; } 2>
+          /dev/null && exit 1
       - name: compo
         uses: ./.github/actions/hello
         with:
