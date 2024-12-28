@@ -34,9 +34,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Something 1
-        run: echo "${{ matrix.version }}"
+        run: echo "${{ matrix.service }}"
       - name: Something 2
-        run: echo "${{ matrix.version }}"
+        run: echo "${{ matrix.service }}"
   trigger-cd:
     name: CD
     needs: ci-matrix
