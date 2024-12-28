@@ -30,6 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     steps:
+      - name: Inputs
+        run: echo ${{ toJson(inputs) }}
       - name: Check
         if: ${{ !startsWith(github.ref, 'refs/tags/v') && github.ref != 'refs/heads/main' }}
         run: |
