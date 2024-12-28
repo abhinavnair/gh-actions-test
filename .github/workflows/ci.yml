@@ -37,6 +37,8 @@ jobs:
         run: echo "${{ matrix.service }}"
       - name: Something 2
         run: make ${{ matrix.service }}-test
+      - name: Something 3
+        run: echo "${{ secrets[format('SONAR_{0}', matrix.service)] }}"
   trigger-cd:
     name: CD
     needs: ci-matrix
