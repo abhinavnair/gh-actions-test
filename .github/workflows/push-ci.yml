@@ -16,3 +16,5 @@ jobs:
     needs: build-and-test
     if: github.event_name != 'pull_request'
     uses: ./.github/workflows/push-cd.yml
+    with:
+      environment: staging

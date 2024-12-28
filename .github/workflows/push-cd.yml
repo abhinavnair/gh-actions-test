@@ -1,20 +1,32 @@
 name: push-cd
 on:
   workflow_call:
+    inputs:
+      environment:
+        description: 'Environment'
+        type: environment
+        required: true
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment'
+        type: environment
+        required: true
 jobs:
-  check-some-stuff:
+  prepare-for-deployment:
+    environment: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     steps:
       - name: Run a one-line script
         run: echo Hello, world!
-  deploy-svc1-to-staging:
-    needs: check-some-stuff
+  deploy-svc1:
+    needs: prepare-for-deployment
     runs-on: ubuntu-latest
     steps:
       - name: Run a one-line script
         run: echo Hello, world!
-  deploy-svc2-to-staging:
-    needs: check-some-stuff
+  deploy-svc2:
+    needs: prepare-for-deployment
     runs-on: ubuntu-latest
     steps:
       - name: Run a one-line script
