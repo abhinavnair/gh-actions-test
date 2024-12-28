@@ -18,3 +18,4 @@ runs:
       shell: bash
     - name: Say Goodbye
       run: echo Goodbye
+      shell: bash
