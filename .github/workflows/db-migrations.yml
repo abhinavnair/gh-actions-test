@@ -31,6 +31,7 @@ jobs:
     steps:
       - name: Print Inputs
         run: echo "${{ toJSON(inputs) }}"
+      - uses: actions/checkout@v3
       - uses: ./.github/actions/ensure-main-release
   run-migrations:
     name: Test golib

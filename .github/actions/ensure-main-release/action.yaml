@@ -1,4 +1,5 @@
 name: Ensure main/release
+description: 'Greet someone'
 runs:
   using: "composite"
   steps:
