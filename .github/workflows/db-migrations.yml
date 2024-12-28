@@ -33,6 +33,10 @@ jobs:
         run: echo "${{ toJSON(inputs) }}"
       - uses: actions/checkout@v3
       - uses: ./.github/actions/ensure-main-release
+      - name: compo
+        uses: ./.github/actions/hello
+        with:
+          who: "Hello there"
   run-migrations:
     name: Test golib
     needs: [prepare]

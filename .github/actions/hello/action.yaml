@@ -19,3 +19,6 @@ runs:
     - name: Say Goodbye
       run: echo Goodbye
       shell: bash
+    - name: Print input context
+      run: echo "${{ toJson(inputs) }}"
+      shell: bash
