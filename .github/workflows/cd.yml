@@ -1,16 +1,10 @@
-name: push-cd
+name: CD
 on:
   workflow_call:
     inputs:
       environment:
         description: 'Environment'
         type: string
-        required: true
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Environment'
-        type: environment
         required: true
 jobs:
   prepare-for-deployment:

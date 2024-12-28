@@ -1,0 +1,10 @@
+name: Release
+concurrency: PRODUCTION
+on:
+  workflow_dispatch:
+jobs:
+  trigger-cd:
+    name: CD
+    uses: ./.github/workflows/cd.yml
+    with:
+      environment: PRODUCTION

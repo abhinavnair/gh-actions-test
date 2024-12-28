@@ -1,11 +1,12 @@
-name: push-ci
+name: CI
 on:
   pull_request:
     branches: main
   push:
     branches: main
 jobs:
-  build-and-test:
+  ci:
+    name: CI
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo source code
@@ -13,8 +14,9 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
   trigger-cd:
-    needs: build-and-test
+    name: CD
+    needs: ci
     if: github.event_name != 'pull_request'
-    uses: ./.github/workflows/push-cd.yml
+    uses: ./.github/workflows/cd.yml
     with:
-      environment: staging
+      environment: STAGING
