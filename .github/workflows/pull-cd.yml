@@ -1,7 +1,7 @@
 name: pull-cd
 on:
   workflow_run:
-    workflows: ci-pull
+    workflows: pull-ci
     types: completed
     branches: main
 jobs:
