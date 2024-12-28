@@ -1,0 +1,10 @@
+name: push-cd
+on:
+  workflow_call:
+jobs:
+  deploy-to-staging:
+    runs-on: ubuntu-latest
+    steps:
+      steps:
+        - name: Run a one-line script
+          run: echo Hello, world!
