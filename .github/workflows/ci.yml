@@ -36,7 +36,7 @@ jobs:
       - name: Something 1
         run: echo "${{ matrix.service }}"
       - name: Something 2
-        run: echo "${{ matrix.service }}"
+        run: make ${{ matrix.service }}-test
   trigger-cd:
     name: CD
     needs: ci-matrix
