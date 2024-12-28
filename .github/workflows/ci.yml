@@ -22,9 +22,24 @@ jobs:
         uses: ./.github/actions/hello
         with:
           who: "Hello there"
+  ci-matrix:
+    name: CI Matrix
+    needs: ci
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        service: [ svc1, svc2, svc3 ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Something 1
+        run: echo "${{ matrix.version }}"
+      - name: Something 2
+        run: echo "${{ matrix.version }}"
   trigger-cd:
     name: CD
-    needs: ci
+    needs: ci-matrix
     if: github.event_name != 'pull_request'
     uses: ./.github/workflows/cd.yml
     with:
