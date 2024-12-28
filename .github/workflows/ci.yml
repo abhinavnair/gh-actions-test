@@ -13,6 +13,10 @@ jobs:
         uses: actions/checkout@v3
       - name: Run a one-line script
         run: echo Hello, world!
+      - name: compo
+        uses: ./.github/actions/hello
+        with:
+          who: "Hello there"
   trigger-cd:
     name: CD
     needs: ci
