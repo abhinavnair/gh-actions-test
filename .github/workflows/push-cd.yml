@@ -14,13 +14,12 @@ on:
         required: true
 jobs:
   prepare-for-deployment:
-    environment: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     steps:
-      - name: Step1
-        run: echo 'Env Secret is $ENV_SECRET' && printenv
+      - name: Show GitHub context
         env:
-          ENV_SECRET: ${{ secrets.ENV_SECRET }}
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Step2
         run: echo Step2
       - name: Step3
@@ -32,8 +31,14 @@ jobs:
     needs: prepare-for-deployment
     runs-on: ubuntu-latest
     steps:
+      - name: Show GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Step1
-        run: echo Step1
+        run: echo "Env Var is $ENV_VAR" && echo "Env Secret is $ENV_SECRET" && printenv
+        env:
+          ENV_SECRET: ${{ secrets.ENV_SECRET }}
       - name: Step2
         run: echo Step2
       - name: Step3
@@ -51,8 +56,14 @@ jobs:
     needs: prepare-for-deployment
     runs-on: ubuntu-latest
     steps:
+      - name: Show GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Step1
-        run: echo Step1
+        run: echo "Env Var is $ENV_VAR" && echo "Env Secret is $ENV_SECRET" && printenv
+        env:
+          ENV_SECRET: ${{ secrets.ENV_SECRET }}
       - name: Step2
         run: echo Step2
       - name: Step3
@@ -70,7 +81,13 @@ jobs:
     needs: prepare-for-deployment
     runs-on: ubuntu-latest
     steps:
+      - name: Show GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Step1
-        run: echo Step1
+        run: echo "Env Var is $ENV_VAR" && echo "Env Secret is $ENV_SECRET" && printenv
+        env:
+          ENV_SECRET: ${{ secrets.ENV_SECRET }}
       - name: Step2
         run: echo Step2
