@@ -1,0 +1,39 @@
+name: DB Migrations
+concurrency: PRODUCTION
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run migrations on'
+        required: true
+        type: environment
+      service:
+        description: 'Service to run migrations on'
+        required: true
+        type: choice
+        options:
+          - ledgersvc
+      database:
+        description: 'Which database?'
+        required: true
+        type: string
+      direction:
+        description: 'Direction of migration (up/down)'
+        required: true
+        type: choice
+        options:
+          - up
+          - down
+jobs:
+  run-migrations:
+    name: Test golib
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Check
+        if: ${{ !startsWith(github.ref, 'refs/tags/v') && github.ref != 'refs/heads/main' }}
+        run: |
+          { echo "Wrong branch/tag"; } 2>
+          /dev/null && exit 1
+      - name: Run
+        run: echo Running...
