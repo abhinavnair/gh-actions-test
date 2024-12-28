@@ -7,7 +7,14 @@ jobs:
     steps:
       - name: Run a one-line script
         run: echo Hello, world!
-  deploy-to-staging:
+  deploy-svc1-to-staging:
+    needs: check-some-stuff
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a one-line script
+        run: echo Hello, world!
+  deploy-svc2-to-staging:
+    needs: check-some-stuff
     runs-on: ubuntu-latest
     steps:
       - name: Run a one-line script
