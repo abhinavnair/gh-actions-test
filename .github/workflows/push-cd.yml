@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Step1
-        run: echo Env Secret is $ENV_SECRET
+        run: echo 'Env Secret is $ENV_SECRET' && printenv
         env:
           ENV_SECRET: ${{ secrets.ENV_SECRET }}
       - name: Step2
