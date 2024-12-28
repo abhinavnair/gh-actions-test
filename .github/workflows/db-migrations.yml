@@ -38,7 +38,7 @@ jobs:
           /dev/null && exit 1
   run-migrations:
     name: Test golib
-    depends: [prepare]
+    needs: [prepare]
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     steps:
