@@ -1,6 +1,9 @@
 name: Release
 concurrency: PRODUCTION
 on:
+  push:
+    tags:
+      - 'v*'
   workflow_dispatch:
 jobs:
   trigger-cd:
