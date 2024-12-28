@@ -25,17 +25,22 @@ on:
           - up
           - down
 jobs:
-  run-migrations:
-    name: Test golib
+  prepare:
+    name: Prepare # Using separate job to be able to print before the approval stage triggered by the `environment` setting
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
     steps:
-      - name: Inputs
+      - name: Print Inputs
         run: echo "${{ toJSON(inputs) }}"
       - name: Check
         if: ${{ !startsWith(github.ref, 'refs/tags/v') && github.ref != 'refs/heads/main' }}
         run: |
           { echo "Wrong branch/tag"; } 2>
           /dev/null && exit 1
+  run-migrations:
+    name: Test golib
+    depends: [prepare]
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
       - name: Run
         run: echo Running...
