@@ -14,7 +14,7 @@ on:
         required: true
 jobs:
   prepare-for-deployment:
-    environment: staging
+    environment: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     steps:
       - name: Step1
