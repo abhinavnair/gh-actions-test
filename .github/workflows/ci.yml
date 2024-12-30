@@ -4,6 +4,7 @@ on:
     branches: main
   push:
     branches: main
+    tags: v*
 env:
   IMAGE_NAME_PREFIX: ${{ github.repository }}
 jobs:

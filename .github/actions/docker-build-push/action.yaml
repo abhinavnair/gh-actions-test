@@ -30,7 +30,8 @@ runs:
         labels: |
           org.opencontainers.image.description=${{ inputs.service }}
         tags: |
-          type=raw,value=${{ github.ref }}-{{sha}}
+          type=raw,value={{tag}},priority,priority=900
+          type=raw,value={{branch}}-{{sha}},priority=800
         images: |
           ${{ env.IMAGE_NAME_PREFIX }}
           ghcr.io/${{ env.IMAGE_NAME_PREFIX }}
