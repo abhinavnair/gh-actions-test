@@ -4,6 +4,9 @@ on:
     branches: main
   push:
     branches: main
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME_PREFIX: ${{ github.repository }}
 jobs:
   ci:
     name: CI
@@ -22,6 +25,13 @@ jobs:
         uses: ./.github/actions/hello
         with:
           who: "Hello there"
+      - name: Docker Build/Push
+        uses: ./.github/actions/docker-build-push
+        with:
+          service: "svc"
+          registry-username: ${{ github.actor }}
+          registry-password: ${{ secrets.GITHUB_TOKEN }}
+          push: ${{ github.event_name != 'pull_request' }}
   ci-matrix:
     name: CI Matrix
     needs: ci
