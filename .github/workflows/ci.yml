@@ -34,8 +34,8 @@ jobs:
         uses: ./.github/actions/docker-build-push
         with:
           service: "svc"
-          registry-username: ${{ github.actor }}
-          registry-password: ${{ secrets.GITHUB_TOKEN }}
+          registry-username: ${{ secrets.DOCKER_USERNAME }}  # ${{ github.actor }}
+          registry-password: ${{ secrets.DOCKER_PASSWORD }} # ${{ secrets.GITHUB_TOKEN }}
           push: ${{ github.event_name != 'pull_request' }}
 #  ci-matrix:
 #    name: CI Matrix

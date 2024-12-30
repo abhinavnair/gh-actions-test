@@ -26,7 +26,7 @@ runs:
       if: ${{ inputs.push == 'true' }}
       uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 #v3.3.0
       with:
-        registry: ${{ env.REGISTRY }}
+#        registry: ${{ env.REGISTRY }}
         username: ${{ inputs.registry-username }}
         password: ${{ inputs.registry-password }}
 #    - name: Docker Build & Push
@@ -41,8 +41,7 @@ runs:
     - name: Docker Build & Push
       shell: bash
       run: |
-        docker buildx build -f "src/${{ inputs.service }}/build/Dockerfile" --push -t "${{ env.REGISTRY }}/${{ env.IMAGE_NAME_PREFIX }}/${{ inputs.service }}:${{ github.sha }}" "src/${{ inputs.service }}"
-        docker push "${{ env.REGISTRY }}/${{ env.IMAGE_NAME_PREFIX }}/${{ inputs.service }}:${{ github.sha }}"
+        docker buildx build -f "src/${{ inputs.service }}/build/Dockerfile" --push -t "${{ env.IMAGE_NAME_PREFIX }}/${{ inputs.service }}:${{ github.sha }}" "src/${{ inputs.service }}"
 #    - name: Generate artifact attestation
 #      if: ${{ inputs.push == 'true' }}
 #      uses: actions/attest-build-provenance@v2
