@@ -6,6 +6,3 @@ svc2-test:
 
 svc3-test:
 	echo "Running test for svc3"
-
-svc4-test:
-	echo "Running test for svc4"
