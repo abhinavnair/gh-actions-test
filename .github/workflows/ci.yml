@@ -5,7 +5,6 @@ on:
   push:
     branches: main
 env:
-  REGISTRY: ghcr.io
   IMAGE_NAME_PREFIX: ${{ github.repository }}
 jobs:
   ci:
@@ -34,8 +33,10 @@ jobs:
         uses: ./.github/actions/docker-build-push
         with:
           service: "svc"
-          registry-username: ${{ secrets.DOCKER_USERNAME }}  # ${{ github.actor }}
-          registry-password: ${{ secrets.DOCKER_PASSWORD }} # ${{ secrets.GITHUB_TOKEN }}
+          ghp-registry-username: ${{ github.actor }}
+          ghp-registry-password: ${{ secrets.GITHUB_TOKEN }}
+          dh-registry-username: ${{ secrets.DOCKER_USERNAME }}
+          dh-registry-password: ${{ secrets.DOCKER_PASSWORD }}
           push: ${{ github.event_name != 'pull_request' }}
 #  ci-matrix:
 #    name: CI Matrix
