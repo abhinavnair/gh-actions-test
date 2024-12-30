@@ -41,7 +41,7 @@ runs:
     - name: Docker Build & Push
       shell: bash
       run: |
-        docker buildx build -f "src/${{ inputs.service }}/build/Dockerfile" --push -t "${{ env.IMAGE_NAME_PREFIX }}/${{ inputs.service }}:${{ github.sha }}" "src/${{ inputs.service }}"
+        docker buildx build -f "src/${{ inputs.service }}/build/Dockerfile" --push -t "${{ env.IMAGE_NAME_PREFIX }}:${{ github.sha }}" "src/${{ inputs.service }}"
 #    - name: Generate artifact attestation
 #      if: ${{ inputs.push == 'true' }}
 #      uses: actions/attest-build-provenance@v2
