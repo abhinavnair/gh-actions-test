@@ -15,10 +15,15 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - language: go
-            build-mode: none
-          - language: actions
-            build-mode: none
+          - service: golib
+            type: library
+            language: something
+          - service: ledgersvc
+            type: service
+            language: go
+          - service: svc2
+            type: service
+            language: typescript
     steps:
       - name: Checkout repository
         run: echo "${{ matrix.language }} & ${{ matrix.build-mode }}"
