@@ -41,7 +41,7 @@ runs:
     - name: Docker Build & Push
       shell: bash
       run: |
-        docker buildx build -f "src/${{ inputs.service }}/build/Dockerfile" -t "${{ env.REGISTRY }}/${{ env.IMAGE_NAME_PREFIX }}/${{ inputs.service }}:${{ github.sha }}" "src/${{ inputs.service }}"
+        docker buildx build -f "src/${{ inputs.service }}/build/Dockerfile" --load -t "${{ env.REGISTRY }}/${{ env.IMAGE_NAME_PREFIX }}/${{ inputs.service }}:${{ github.sha }}" "src/${{ inputs.service }}"
         docker push "${{ env.REGISTRY }}/${{ env.IMAGE_NAME_PREFIX }}/${{ inputs.service }}:${{ github.sha }}"
 #    - name: Generate artifact attestation
 #      if: ${{ inputs.push == 'true' }}
